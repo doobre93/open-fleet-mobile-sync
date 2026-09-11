@@ -1,0 +1,15 @@
+node_modules/
+.expo/
+dist/
+.idea/
+.vscode/
+.env
+.env.*
+*.log
+*.keystore
+*.jks
+*.p12
+*.pem
+coverage/
+.DS_Store
+Thumbs.db

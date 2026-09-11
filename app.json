@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Open Fleet Demo",
+    "slug": "open-fleet-mobile-sync",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "web": { "bundler": "metro", "name": "Open Fleet · Lendago" }
+  }
+}
