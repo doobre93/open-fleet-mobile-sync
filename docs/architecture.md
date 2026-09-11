@@ -3,13 +3,13 @@
 The current application is an Expo/React Native demonstrator with an in-memory state store. It has no backend or persistent queue.
 
 ```text
-Dispatcher screens ─┐
-                    ├── applyAction ── session state
-Driver screens ─────┘                      │
-                                     sample fixtures
+Driver screens ─────┐
+                    ├── FleetProvider ── applyAction ── session state
+Dispatch screens ───┘                                        │
+                                                       demo fixtures
 ```
 
-The dispatcher can create an order, assign a driver before the journey starts, and review an attached sample CMR. Both roles can advance an assigned journey and attach sample documents, with driver operations scoped to their assigned orders. Domain checks protect the demo from inconsistent operations, but client-side checks are not an authorization boundary for a real service.
+The dispatcher can create an order, assign a driver before the journey starts, and approve a scanned CMR. Both roles can advance an assigned journey and attach documents, with driver operations scoped to their assigned orders. Domain checks protect the demo from inconsistent operations, but client-side checks are not an authorization boundary for a real service.
 
 The new component proposed for funding would introduce a separate architecture:
 

@@ -1,55 +1,52 @@
 # Open Fleet Mobile Sync
 
-A transport workflow demonstrator by LENDAGO INTERNATIONAL SRL, and a proposed project for independently reusable mobile synchronisation.
+A driver and dispatch app for small transport fleets, built with Expo and React Native by LENDAGO INTERNATIONAL SRL. It covers the day-to-day loop we deal with in our own fleet: dispatch assigns a load, the driver runs it, the signed CMR comes back, dispatch approves it.
 
-**Status:** a working, session-only demo. Offline synchronisation and the reference server are proposed work, not implemented features. No grant has been awarded.
+**Status:** working demo with a made-up fleet. Everything runs on the device and resets on reload. Offline synchronisation and the reference server are the next piece of work and are not in this repository yet.
 
-## Try the workflow
+## Walkthrough
 
-1. Open the order board as **Dispatcher**. Find `DEMO-1003` and assign a sample driver.
-2. Switch to **Driver** and choose the same driver. Open the assigned order.
-3. Start the journey, then mark it as delivered.
-4. Add a sample CMR and open its preview.
-5. Switch back to Dispatcher and mark the CMR as reviewed.
-6. Use **Reset demo** to restore the initial five orders.
+1. Pick **Mihai Stoica** on the start screen. The current journey is on top — drag the orange handle to confirm delivery.
+2. Open the **CMR** tab, pick the delivered order and scan the CMR (the camera is simulated).
+3. **Profile → Switch profile → Dispatch office.** Open `OF-1003`, which has no driver, and assign one.
+4. In the **CMR** tab, open the scanned document and approve it. The CMR preview is a specimen form filled from the order.
+5. Use **+** on the board to add an order, or search by city, reference or driver.
+6. **Profile → Reset demo data** puts everything back.
 
-You can also create a demo order, search routes and references, filter by delivery status and explore driver assignments. All records are fictional and explicitly labelled. Document previews contain sample route information, not scans, signatures or actual transport records.
+## Running it
 
-## Run locally
-
-Use a Node.js version supported by the installed Expo SDK. See `package.json` for the minimum version.
+Node 22.13 or newer.
 
 ```sh
 npm ci
-npm run web
+npm start       # Expo dev server; scan the QR code with Expo Go on Android or iOS
+npm run web     # same app in the browser
+npm run check   # typecheck, tests, web export into dist/
 ```
 
-The CLI prints the local address. For a production web export:
+On a wide browser window the app is shown in a phone-width column.
 
-```sh
-npm run check
-```
+## Layout
 
-This runs TypeScript checks, domain tests and a web build. Serve the generated `dist/` folder with a static HTTP server. The application uses Expo and React Native, including React Native Web. Native Android and iOS device validation is separate from the browser checks.
+| Path | What lives there |
+| --- | --- |
+| `src/domain.ts` | Orders, roles and the rules for assigning, advancing, attaching and approving |
+| `src/fixtures.ts` | The demo fleet: three drivers, five orders |
+| `src/store.tsx` | Session state, current profile, toasts |
+| `src/screens/` | Start screen, driver Today, dispatch board, journey detail, CMR list, profile |
+| `src/components/` | Ticket card, slide-to-confirm, bottom sheet, CMR specimen, tab bar, icons |
+| `tests/` | Node test runner, no extra framework |
 
-## Existing work and proposed work
+## Where this comes from
 
-The workflow choices were informed by the existing VALIMARTRANS mobile code: orders, driver assignment, delivery status, CMR and temperature-report handling. This repository is a new standalone implementation. It does not contain that private application's source tree, database, credentials, deployment configuration or Git history.
+The workflow follows the one in VALIMARTRANS, the fleet application we use internally (orders, driver assignment, delivery status, CMR and reefer paperwork). This repository is a separate, clean implementation — none of that application's code, data, credentials or history is included.
 
-The proposed next step is a persistent mobile action queue, a documented client/server contract, safe retries, duplicate handling, conflict review, real document transfer, and an open reference server. See [the roadmap](docs/roadmap.md) and [architecture](docs/architecture.md).
+Next step is an offline action queue on the phone, a documented sync contract with idempotent retries and conflict handling, real document upload, and a small open reference server. See [roadmap](docs/roadmap.md) and [architecture](docs/architecture.md).
 
-## Boundaries
+## Limits of the demo
 
-- State is held in memory. Reloading or resetting restores the sample dataset.
-- Role switching demonstrates workflows; it is not login or server-side authorization.
-- No uploads, production API requests, accounts, geolocation or analytics are included.
-- The driver actions and dispatcher review are local demo state changes, not messages to other people.
-- The demo is not production fleet software or evidence of a completed grant milestone.
+- Profiles are a picker, not a login. Role checks happen on the client only.
+- No network calls, uploads, location or analytics.
+- Drivers, plates, customers and orders are fictional.
 
-## Development
-
-`src/domain.ts` contains the workflow rules, `src/fixtures.ts` the sample dataset, `src/ui.tsx` shared UI components, and `App.tsx` the demo screens. Tests exercise assignment visibility, role restrictions, delivery transitions, CMR review and input validation. These tests do not establish production security or synchronisation reliability.
-
-Project preparation and implementation used generative-AI assistance. This is disclosed here and in the funding application; no exclusively human authorship or independently audited results are claimed.
-
-Company: [lendago.ro](https://lendago.ro/). Source licensing: [MIT](LICENSE). Third-party dependencies retain their own licences.
+[lendago.ro](https://lendago.ro/) · [MIT licence](LICENSE)

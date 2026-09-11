@@ -2,11 +2,11 @@
 
 ## Current demonstrator
 
-- [x] Dispatcher order board, search and status filters
-- [x] Sample driver workspaces and assignments
-- [x] Delivery state transitions and local activity history
-- [x] Sample CMR and temperature-report previews
-- [x] Local CMR review and resettable fixtures
+- [x] Driver profile picker, Today screen and journey detail
+- [x] Slide-to-confirm for starting and delivering a journey
+- [x] Dispatch board with search, status filters and driver assignment
+- [x] Simulated CMR scan, specimen CMR preview and dispatch approval
+- [x] Reefer loads with temperature range and log attachment
 - [x] Domain workflow tests
 
 ## Proposed synchronisation project

@@ -1,10 +1,24 @@
 {
   "expo": {
-    "name": "Open Fleet Demo",
+    "name": "Open Fleet",
     "slug": "open-fleet-mobile-sync",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "web": { "bundler": "metro", "name": "Open Fleet · Lendago" }
+    "backgroundColor": "#1B1A18",
+    "android": {
+      "package": "ro.lendago.openfleet"
+    },
+    "ios": {
+      "bundleIdentifier": "ro.lendago.openfleet"
+    },
+    "web": {
+      "bundler": "metro",
+      "name": "Open Fleet"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-status-bar"
+    ]
   }
 }
